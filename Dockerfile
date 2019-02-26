@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM richarvey/nginx-php-fpm:latest
 
 LABEL maintainer="TeBe" \
       php="7.1" \
