@@ -1,5 +1,5 @@
 <?php
-echo 666;
+echo 666123;
 die;
 
 ?>
