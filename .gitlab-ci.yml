@@ -6,4 +6,4 @@ before_script:
 
 test:app:
   script:
-  - phpunit --configuration phpunit_myapp.xml
+  - php index.php
