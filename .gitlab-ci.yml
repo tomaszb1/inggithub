@@ -1,9 +1,42 @@
-image: php:7.2
+image: docker:stable
+services:
+- docker:dind
+
+stages:
+- build
+- test
+- release
+
+variables:
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
 
 before_script:
-# Install dependencies
-- bash ci/docker_install.sh > /dev/null
+- docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
-test:app:
+build:
+  stage: build
   script:
-  - php index.php
+  - docker build --pull -t $CONTAINER_TEST_IMAGE .
+  - docker push $CONTAINER_TEST_IMAGE
+
+test1:
+  stage: test
+  script:
+  - docker pull $CONTAINER_TEST_IMAGE
+  - docker run $CONTAINER_TEST_IMAGE /script/to/run/tests
+
+test2:
+  stage: test
+  script:
+  - docker pull $CONTAINER_TEST_IMAGE
+  - docker run $CONTAINER_TEST_IMAGE /script/to/run/another/test
+
+release-image:
+  stage: release
+  script:
+  - docker pull $CONTAINER_TEST_IMAGE
+  - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+  - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+  - master
