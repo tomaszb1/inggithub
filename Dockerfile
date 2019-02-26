@@ -32,7 +32,7 @@ RUN bash ./packages.sh \
     && chown -R $IMAGE_USER:$IMAGE_USER $COMPOSER_HOME \
     && curl -fsSL https://goss.rocks/install | GOSS_VER=v${GOSS_VERSION} sh \
     && cd /var/www/inggithub \
-    && git clone https://github.com/tomaszb1/inggithub.git \
+    && git clone https://github.com/tomaszb1/inggithub.git
 
 USER $IMAGE_USER
 
