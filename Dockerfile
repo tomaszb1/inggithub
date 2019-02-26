@@ -18,7 +18,7 @@ WORKDIR /tmp
 
 # COPY INSTALL SCRIPTS
 COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
-COPY ./php/scripts/*.sh /tmp/
+COPY ./scripts/*.sh /tmp/
 RUN chmod +x /tmp/*.sh
 
 # Install
