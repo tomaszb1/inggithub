@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM nginx:latest
 
 LABEL maintainer="TeBe" \
       php="7.1" \
