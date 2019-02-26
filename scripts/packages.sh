@@ -33,5 +33,6 @@ DEBIAN_FRONTEND=noninteractive
       sudo \
       unzip \
       zlib1g-dev \
+      mc \
       --no-install-recommends \
 && rm -rf /var/lib/apt/lists/*

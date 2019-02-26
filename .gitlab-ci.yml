@@ -24,13 +24,7 @@ test1:
   stage: test
   script:
   - docker pull $CONTAINER_TEST_IMAGE
-  - docker run $CONTAINER_TEST_IMAGE /script/to/run/tests
-
-test2:
-  stage: test
-  script:
-  - docker pull $CONTAINER_TEST_IMAGE
-  - docker run $CONTAINER_TEST_IMAGE /script/to/run/another/test
+  - docker run -it $CONTAINER_TEST_IMAGE /bin/bash
 
 release-image:
   stage: release

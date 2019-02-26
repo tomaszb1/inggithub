@@ -25,13 +25,15 @@ RUN chmod +x /tmp/*.sh
 RUN bash ./packages.sh \
     && adduser --disabled-password --gecos "" $IMAGE_USER && \
        echo "$IMAGE_USER  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers && \
-       mkdir -p /var/www/html && \
+       mkdir -p /var/www/inggithub && \
        chown -R $IMAGE_USER:$IMAGE_USER /var/www $HOME \
     && composer global require "hirak/prestissimo:^0.3"  \
     && rm -rf ~/.composer/cache/* \
     && chown -R $IMAGE_USER:$IMAGE_USER $COMPOSER_HOME \
     && curl -fsSL https://goss.rocks/install | GOSS_VER=v${GOSS_VERSION} sh
+    && cd /var/www/inggithub
+    && git clone https://github.com/tomaszb1/inggithub.git
 
 USER $IMAGE_USER
 
-WORKDIR /var/www/html
+WORKDIR /var/www/ingeniousio
