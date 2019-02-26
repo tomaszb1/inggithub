@@ -7,8 +7,6 @@ set -euf -o pipefail
 ############################################################
 # Taken from here: https://gist.github.com/kwk/55bb5b6a4b7457bef38d
 #
-# we don't need and apt cache in a container
-echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
 
 DEBIAN_FRONTEND=noninteractive
   dpkg-reconfigure -f noninteractive tzdata \
