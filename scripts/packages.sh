@@ -9,8 +9,7 @@ set -euf -o pipefail
 #
 
 DEBIAN_FRONTEND=noninteractive
-  dpkg-reconfigure -f noninteractive tzdata \
-  && apt-get update \
+  apt-get update \
   && apt-get upgrade -y \
   &&  DEBIAN_FRONTEND=noninteractive apt-get install -yqq \
       apt-transport-https \
