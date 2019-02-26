@@ -31,8 +31,7 @@ RUN bash ./packages.sh \
     && rm -rf ~/.composer/cache/* \
     && chown -R $IMAGE_USER:$IMAGE_USER $COMPOSER_HOME \
     && curl -fsSL https://goss.rocks/install | GOSS_VER=v${GOSS_VERSION} sh \
-    && cd /var/www/inggithub \
-    && git clone https://github.com/tomaszb1/inggithub.git
+    && cd /var/www/inggithub
 
 USER $IMAGE_USER
 
