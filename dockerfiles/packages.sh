@@ -2,12 +2,6 @@
 
 set -euf -o pipefail
 
-############################################################
-# Speedup DPKG and don't use cache for packages
-############################################################
-# Taken from here: https://gist.github.com/kwk/55bb5b6a4b7457bef38d
-#
-
 DEBIAN_FRONTEND=noninteractive
   apt-get update \
   && apt-get upgrade -y \
