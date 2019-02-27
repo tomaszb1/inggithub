@@ -64,7 +64,7 @@ RUN chown -R icon:icon /home/icon/
 RUN runuser -l icon -c 'cd /home/icon/www/api && composer install'
 
 #Add Necessary Repo for GCS Fuse
-export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+RUN export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
 RUN echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN sudo DEBIAN_FRONTEND=noninteractive apt-get update
