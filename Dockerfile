@@ -27,10 +27,8 @@ RUN cd /opt/src
 RUN chown -R icon:icon /home/icon/www
 
 RUN apt-get install sudo
-RUN RELEASE=$(cat /etc/os-release  | grep DISTRIB_RELEASE  | cut -d= -f2)
 
 #Install Google Cloud Components
-RUN export CLOUD_SDK_REPO="cloud-sdk-$(/etc/os-release -c -s)"
 RUN echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
@@ -67,7 +65,7 @@ RUN chown -R icon:icon /home/icon/
 RUN runuser -l icon -c 'cd /home/icon/www/api && composer install'
 
 #Add Necessary Repo for GCS Fuse
-RUN export GCSFUSE_REPO=gcsfuse-`/etc/os-release -c -s`
+export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
 RUN echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN sudo DEBIAN_FRONTEND=noninteractive apt-get update
