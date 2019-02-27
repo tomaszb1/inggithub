@@ -1,5 +1,4 @@
-FROM scratch
-ADD ubuntu-bionic-core-cloudimg-amd64-root.tar.gz /
+FROM ubuntu:latest
 
 LABEL maintainer="TeBe" \
       php="7.1" \
