@@ -33,7 +33,7 @@ RUN bash ./packages.sh \
     && curl -fsSL https://goss.rocks/install | GOSS_VER=v${GOSS_VERSION} sh \
     && cd /var/www/inggithub
 
-RUN git clone https://github.com/tomaszb1/inggithub.git
+RUN git clone https://github.com/tomaszb1/inggithub.git /var/www/inggithub
 
 USER $IMAGE_USER
 
