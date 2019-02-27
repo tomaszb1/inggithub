@@ -1,4 +1,5 @@
-FROM justckr/ubuntu-nginx-php:php7
+FROM scratch
+ADD ubuntu-bionic-core-cloudimg-amd64-root.tar.gz /
 
 LABEL maintainer="TeBe" \
       php="7.1" \
