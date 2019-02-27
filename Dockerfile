@@ -25,8 +25,6 @@ RUN mkdir /home/icon/www
 RUN cd /opt/src
 RUN chown -R icon:icon /home/icon/www
 
-RUN apt-get install sudo
-
 #Install Google Cloud Components
 RUN echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
