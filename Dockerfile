@@ -27,6 +27,7 @@ RUN chown -R icon:icon /home/icon/www
 
 RUN apt-get update
 RUN apt-get install sudo
+RUN apt-get install curl
 
 #Install Google Cloud Components
 RUN echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
