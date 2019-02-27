@@ -16,11 +16,6 @@ USER root
 
 WORKDIR /tmp
 
-# COPY INSTALL SCRIPTS
-COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
-COPY ./dockerfiles/*.sh /tmp/
-RUN chmod +x /tmp/*.sh
-
 #Create icon User
 RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/icon -gecos "" icon
 RUN echo "icon:n01th1sone!" | chpasswd
@@ -31,11 +26,13 @@ RUN cd /opt/src
 RUN chown -R icon:icon /home/icon/www
 
 #Install Google Cloud Components
-RUN sudo DEBIAN_FRONTEND=noninteractive apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get --only-upgrade install -y google-cloud-sdk
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get update
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get --only-upgrade install -y google-cloud-sdk
 
 # PHP 7.1+ support
 RUN add-apt-repository -y ppa:ondrej/php
-RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -y update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -y update
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
 # Install required packages
 RUN sudo DEBIAN_FRONTEND=noninteractive apt-get install -y zip unzip nodejs htop build-essential libssl-dev nginx libfcgi0ldbl php7.1-fpm php7.1-dev php-redis php-igbinary php7.1-gd php7.1-xsl php7.1-curl php7.1-mcrypt php7.1-mbstring php7.1-readline php7.1-xml php7.1-intl php7.1-mysql php7.1-zip php-xml php-redis php-pear php-mbstring php-gd php-mongodb php-imagick php-oauth pkg-config imagemagick xpdf qpdf git-core mc libmagickwand-dev libmagickcore-dev mcrypt curl git libzmq3-dev php-zmq
