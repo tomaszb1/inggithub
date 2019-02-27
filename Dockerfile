@@ -25,6 +25,7 @@ RUN mkdir /home/icon/www
 RUN cd /opt/src
 RUN chown -R icon:icon /home/icon/www
 
+RUN apt-get install sudo
 #Install Google Cloud Components
 RUN sudo DEBIAN_FRONTEND=noninteractive apt-get update
 RUN sudo DEBIAN_FRONTEND=noninteractive apt-get --only-upgrade install -y google-cloud-sdk
