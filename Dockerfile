@@ -25,13 +25,13 @@ RUN mkdir /home/icon/www
 RUN cd /opt/src
 RUN chown -R icon:icon /home/icon/www
 
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get update
 RUN apt-get install sudo
 
 #Install Google Cloud Components
 RUN echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
-RUN sudo DEBIAN_FRONTEND=noninteractive apt-get update
 RUN sudo DEBIAN_FRONTEND=noninteractive apt-get --only-upgrade install -y google-cloud-sdk
 
 # PHP 7.1+ support
